@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "noImplicitAny": false,
+    "module": "es2020",
+    "outDir": "./dist/",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "es5",
+    "moduleResolution": "node",
+    "strictNullChecks": false,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "noUnusedLocals": true,
+    "pretty": true,
+    "allowJs": true,
+    "lib": ["es2015", "es2017", "dom"]
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "include": [
+    "./src/"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+  ]
+}
