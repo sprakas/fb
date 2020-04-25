@@ -1,5 +1,4 @@
-import { makeExecutableSchema } from 'graphql-tools';
-import { resolvers } from './resolvers';
+import { buildSchema } from 'graphql';
 const typeDefs = `
 type Note {
   _id: ID!
@@ -11,6 +10,7 @@ scalar Date
 type Query {
   allNotes: [Note]
   getNote(_id: ID!): Note
+  login(email: String!, password: String!): AuthData!
 }
 input NoteInput {
     title: String!
@@ -24,10 +24,25 @@ type Mutation {
     createNote(input: NoteInput) : Note
     updateNote(_id: ID!, input: NoteUpdateInput): Note
     deleteNote(_id: ID!) : Note
+    createUser(userInput: UserInput): User
+}
+type User {
+  _id: ID!
+  email: String!
+  password: String
+}
+type AuthData {
+  userId: ID!
+  token: String!
+  tokenExpiration: Int!
+}
+input UserInput {
+  email: String!
+  password: String!
+}
+schema {
+  query: Query
+  mutation: Mutation
 }
 `;
-const schema = makeExecutableSchema({
-    typeDefs,
-    resolvers
-});
-export default schema;
+export default buildSchema(typeDefs);

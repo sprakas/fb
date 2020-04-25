@@ -1,8 +1,11 @@
 import express from "express";
 import mongoose from 'mongoose';
 import graphlHTTP from "express-graphql";
-import schema from "./schema";
 import cors from "cors";
+
+import schema from "./schema/schema";
+import rootValue from './resolvers/index';
+import isAuth from './middlewares/isAuth';
 
 const app = express();
 const PORT = 4300;
@@ -14,17 +17,13 @@ mongoose.connect("mongodb+srv://Surya:Surya@123@cluster0-rng2v.mongodb.net/notes
 });
 
 app.use(cors())
-app.get("/", (req, res) => {                                
-  res.json({
-    message: "Notetaking API v1"
-  });
-});
-
+app.use(isAuth);
 app.use(
     "/graphql",
     graphlHTTP({
-      schema: schema,
-      graphiql: true
+      schema,
+      rootValue,
+      graphiql: true,
     })
   );
 
