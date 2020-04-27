@@ -1,0 +1,24 @@
+mutation {
+  addTodo(text: "surya") @client {
+    id
+    text
+    completed
+  }
+}
+mutation {
+  addUserData(userId: "123", mail:"surya") @client {
+    userId
+    name
+  }
+}
+{
+  currentUser @client{
+    userId
+    mail
+  }
+  todos @client {
+   id 
+   text
+   completed
+  }
+}

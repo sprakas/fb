@@ -5,6 +5,7 @@ const merge = require('webpack-merge');
 module.exports = merge(common,{
   mode: 'development',
   watch: true,
+  devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true, 
